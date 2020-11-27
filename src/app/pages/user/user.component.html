@@ -1,0 +1,78 @@
+<div class="divClass">
+    <button type="button" class="btn btn-outline-primary" routerLink="/home">Atrás</button>
+    <h3 class="text-center">{{title}}: </h3>
+    <form (ngSubmit)="Save(forma)" #forma="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Nombre</label>
+                    <input type="text" class="form-control" [(ngModel)]="entityUser.firstName" [class.is-invalid]="firstName.invalid && firstName.touched" required autocomplete="off" #firstName="ngModel" type="text" name="firstName" placeholder="Nombre">
+                    <small *ngIf="firstName.invalid && firstName.touched" class="form-text text-danger">El nombre es obligatorio.</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Apellido</label>
+                    <input type="text" class="form-control" [(ngModel)]="entityUser.lastName" [class.is-invalid]="lastName.invalid && lastName.touched" required autocomplete="off" #lastName="ngModel" type="text" name="lastName" placeholder="Apellido">
+                    <small *ngIf="lastName.invalid && lastName.touched" class="form-text text-danger">El apellido es obligatorio.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Dirección</label>
+                    <input type="text" class="form-control" [(ngModel)]="entityUser.address" [class.is-invalid]="address.invalid && address.touched" required autocomplete="off" #address="ngModel" type="text" name="address" placeholder="Dirección">
+                    <small *ngIf="address.invalid && address.touched" class="form-text text-danger">La dirección es obligatorio.</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Telefono</label>
+                    <input type="text" class="form-control" [(ngModel)]="entityUser.phone" [class.is-invalid]="phone.invalid && phone.touched" required autocomplete="off" #phone="ngModel" type="text" name="phone" placeholder="Telefono">
+                    <small *ngIf="phone.invalid && phone.touched" class="form-text text-danger">El telefono es obligatorio.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Edad</label>
+                    <input type="text" class="form-control" [(ngModel)]="entityUser.age" [class.is-invalid]="age.invalid && age.touched" required autocomplete="off" #age="ngModel" type="text" name="age" placeholder="Edad">
+                    <small *ngIf="age.invalid && age.touched" class="form-text text-danger">La edad es obligatorio.</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Email</label>
+                    <input type="text" class="form-control" [(ngModel)]="entityUser.email" [class.is-invalid]="email.invalid && email.touched" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autocomplete="off" #email="ngModel" type="text" name="email" placeholder="Email">
+                    <small *ngIf="email.invalid && email.touched" class="form-text text-danger">El email es obligatorio y debe tener formato correcto.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="margin-top: 10px;">
+                        <mat-label>Rol</mat-label>
+                        <mat-select [(ngModel)]="rolSelect" name="food">
+                            <mat-option *ngFor="let rol of listRols" [value]="rol.rolsId">
+                                {{rol.rolNameApplication}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Contraseña</label>
+                    <input type="password" class="form-control" [(ngModel)]="entityUser.password" [class.is-invalid]="password.invalid && password.touched" required autocomplete="off" #password="ngModel" name="password" placeholder="Contraseña">
+                    <small *ngIf="password.invalid && password.touched" class="form-text text-danger">La contraseña es obligatorio.</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-primary text-center" [disabled]="!forma.valid">Guardar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <form (ngSubmit)="login(formu)" #formu="ngForm" class="login100-form validate-form flex-sb flex-w">
+
+                <span class="login100-form-title p-b-51">
+                    Login
+                </span>
+
+                <!-- <span class="text-danger">El correo es obligatorio</span> -->
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" class="form-control" [(ngModel)]="usuario" [class.is-invalid]="username.invalid && username.touched" required autocomplete="off" #username="ngModel" type="text" name="username" placeholder="Nombre">
+                    <small *ngIf="username.invalid && username.touched" class="form-text text-danger">El usuario es obligatorio.</small>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <!-- <span class="text-danger">La contraseña debe de ser más de 6 letras</span> -->
+                <div class="wrap-input100 m-b-16" data-validate="Password is required">
+                    <input class="input100" type="password" name="password" placeholder="Contraseña" class="form-control" [(ngModel)]="passwordV" [class.is-invalid]="password.invalid && password.touched" required #password="ngModel">
+                    <small *ngIf="password.invalid && password.touched" class="form-text text-danger">La contraseña es obligatoria.</small>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn" type="submit" [disabled]="!formu.valid">
+                        Ingresar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

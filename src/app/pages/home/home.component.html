@@ -1,0 +1,62 @@
+<div class="text-right" style="margin-top:10px;">
+    <button type="button" class="btn btn-outline-warning" (click)="logout()">Cerrar sesión</button>
+</div>
+<div class="divClass">
+    <mat-card>
+        <h1>MENSAJE DE BIENVENIDA</h1>
+    </mat-card>
+    <br>
+    <mat-card *ngIf="currentUser.authQuery">
+        <form>
+            <div class="row">
+                <div class="col-md-5">
+                    <mat-form-field class="example-form-field" style="margin-top: 17px;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput [(ngModel)]="nameSelect" name="nombre" type="text">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Seleccionar rol</mat-label>
+                        <mat-select [(ngModel)]="rolSelect" name="food">
+                            <mat-option value=null>Ninguno</mat-option>
+                            <mat-option *ngFor="let rol of listRols" [value]="rol.rolsId">
+                                {{rol.rolNameApplication}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2" style="margin-top: 28px;">
+                    <button type="button" class="btn btn-primary" (click)="search()">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div style="padding-top: 10px;">
+            <button *ngIf="currentUser.authCreate" type="button" class="btn btn-outline-primary" routerLink="/user">Agregar</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listUsers">
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.age}}</td>
+                        <td><button *ngIf="currentUser.authEdit" type="button" class="btn btn-outline-warning" [routerLink]="['/user/', item.informationUserId]">Editar</button>
+                            <button *ngIf="currentUser.authDelete" type="button" class="btn btn-outline-danger" (click)="DeleteUser(item.informationUserId)">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-card>
+</div>
